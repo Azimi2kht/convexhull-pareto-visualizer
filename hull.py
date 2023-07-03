@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 
 def turn_right(p1, p2, p3):
-    if (p3[1] - p1[1]) * (p2[0] - p1[0]) >= (p2[1] - p1[1]) * (p3[0] - p1[0]):
+    if (p3[1] - p1[1]) * (p2[0] - p1[0]) > (p2[1] - p1[1]) * (p3[0] - p1[0]):
         return False
     return True
 
@@ -26,3 +26,15 @@ def graham_scan(p):
     del ll[-1]
     l = lu + ll
     return np.array(l)
+
+
+def pareto(hull):
+    hull = [tuple(x) for x in hull]
+    hull.sort(reverse=True)
+    current = hull[0]
+    pareto = [current]
+    for i in range(1, len(hull)):
+        if hull[i][1] > current[1]:
+            pareto.append(hull[i])
+            current = hull[i]
+    return np.array(pareto)
