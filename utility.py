@@ -9,6 +9,6 @@ def get_points():
             break
         for s in line:
             points.append(
-                tuple([float(s) for s in re.findall(r"[-+]?\d*\.\d+|\d+", s)])
+                tuple([float(s) for s in re.findall(r"-?\d+\.?\d*", s)])
             )
     return points
